@@ -4,6 +4,12 @@
     name: "{{ pip_package }}"
     state: present
 
+- name: Upgrade Pip  # noqa 403
+  pip:
+    name: pip
+    state: latest
+  when: pip_upgrade | bool
+
 - name: Ensure pip_install_packages are installed.
   pip:
     name: "{{ item.name | default(item) }}"
